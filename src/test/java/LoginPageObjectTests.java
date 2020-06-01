@@ -57,6 +57,15 @@ public class LoginPageObjectTests {
         Assert.assertEquals(expectedErrorText,errorText);
     }
     
+        @Test
+    public void loginFailEmptyPassword(){
+        LoginPageObject poLogin = new LoginPageObject(driver, poUrl);
+        poLogin.login("lab12@gmail.com","");
+        String errorText = driver.findElement(By.xpath("//*[@id=\"center_column\"]/div[1]/ol/li")).getText();
+        String expectedErrorText = "Password is required.";
+        Assert.assertEquals(expectedErrorText,errorText);
+    }
+    
         @AfterAll
     public static void tearDown() throws Exception {
         driver.quit();
