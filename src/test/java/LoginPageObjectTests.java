@@ -32,6 +32,14 @@ public class LoginPageObjectTests {
         Assert.assertEquals(expectedUrl,driver.getCurrentUrl());
     }
     
+        @Test
+    public void loginFailWrongPassword(){
+        LoginPageObject poLogin = new LoginPageObject(driver, poUrl);
+        poLogin.login(login,"lab11");
+        String expectedUrl = "http://automationpractice.com/index.php?controller=authentication";
+        Assert.assertEquals(expectedUrl,driver.getCurrentUrl());
+    }
+    
         @AfterAll
     public static void tearDown() throws Exception {
         driver.quit();
