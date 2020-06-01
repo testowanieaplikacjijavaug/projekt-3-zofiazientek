@@ -15,7 +15,6 @@ public class LoginPageObjectTests {
     private static WebDriver driver;
     private String login = "lab12@gmail.com";
     String poUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
-    //LoginPageObject poLogin = new LoginPageObject(driver, poUrl);
     private static WebDriverWait wait;
 
     @BeforeAll
@@ -23,6 +22,14 @@ public class LoginPageObjectTests {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
+    }
+    
+        @Test
+    public void loginSuccess() throws  Exception {
+        LoginPageObject poLogin = new LoginPageObject(driver, poUrl);
+        poLogin.login(login,"lab12");
+        String expectedUrl = "http://automationpractice.com/index.php?controller=my-account";
+        Assert.assertEquals(expectedUrl,driver.getCurrentUrl());
     }
     
         @AfterAll
