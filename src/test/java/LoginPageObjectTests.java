@@ -40,6 +40,14 @@ public class LoginPageObjectTests {
         Assert.assertEquals(expectedUrl,driver.getCurrentUrl());
     }
     
+        @Test
+    public void loginFailNoSuchUser(){
+        LoginPageObject poLogin = new LoginPageObject(driver, poUrl);
+        poLogin.login("projekt3@gmail.com","lab12");
+        String expectedUrl = "http://automationpractice.com/index.php?controller=authentication";
+        Assert.assertEquals(expectedUrl,driver.getCurrentUrl());
+    }
+    
         @AfterAll
     public static void tearDown() throws Exception {
         driver.quit();
