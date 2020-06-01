@@ -48,6 +48,15 @@ public class LoginPageObjectTests {
         Assert.assertEquals(expectedUrl,driver.getCurrentUrl());
     }
     
+        @Test
+    public void loginFailEmptyLogin(){
+        LoginPageObject poLogin = new LoginPageObject(driver, poUrl);
+        poLogin.login("","lab12");
+        String errorText = driver.findElement(By.xpath("//*[@id=\"center_column\"]/div[1]/ol/li")).getText();
+        String expectedErrorText = "An email address required.";
+        Assert.assertEquals(expectedErrorText,errorText);
+    }
+    
         @AfterAll
     public static void tearDown() throws Exception {
         driver.quit();
